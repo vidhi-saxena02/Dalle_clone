@@ -2,6 +2,8 @@ import express from "express";
 import * as dotenv from "dotenv";
 import cors from "cors";
 import connectDb from "../server/mongodb/connect.js";
+import postRoutes from "./routes/postRoutes.js";
+import dalleRoutes from "./routes/dalleRoutes.js";
 
 const PORT = 3000;
 
@@ -15,6 +17,9 @@ app.use(
     limit: "50mb",
   })
 );
+
+app.use("/api/v1/posts", postRoutes);
+app.use("/api/v1/dalle", dalleRoutes);
 
 app.get("/", async (req, res) => {
   res.send("Helloooo");
